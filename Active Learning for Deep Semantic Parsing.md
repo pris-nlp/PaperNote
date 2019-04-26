@@ -1,5 +1,9 @@
 ## 《Active Learning for Deep Semantic Parsing》阅读笔记
 
+Conference from: ACL 2018
+
+Paper link: [https://www.aclweb.org/anthology/P18-2008](https://www.aclweb.org/anthology/P18-2008)
+
 ### 要解决的问题
 语义分析任务（Semantic Parsing）指的是：从给定的自然语言查询（query）中提取有效信息，将其转换为一个逻辑范式（Logical Form, LF）。也就是需要将表述方式十分随意的句子转换成一个结构化的、计算机能理解的形式语言句子。需要转换成的LF的形式取决于具体任务。下图是对应到某些任务（数据集）中的**自然语言 - LF**的样例：
 ![图片](http://imglf5.nosdn0.126.net/img/Y3cva2JCQ0tUWi91TkhqKzN0OUdkQWFONkhOSHZmaS9JUXNtTFBnQklEZXdxcGFLcEtkeU1RPT0.jpg)
