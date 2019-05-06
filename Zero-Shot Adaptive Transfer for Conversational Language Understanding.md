@@ -54,7 +54,8 @@ thumbnail: http://imglf5.nosdn0.126.net/img/bG1jbzEvdHVjVjIxUDhYb2xFNHY2YnhEV1NV
 最后通过一个前馈层和CRF层输出预测结果。
 
 ZAT模型预测的时候需要将所有的slot description与input utterance经过模型，再将所有的结果合并。
-> For  example,  we  merge  “Find $[mexican]_{category}$  deals  in  seattle”  and  “Find  mexican  deals in  $[seattle]_{location}$”  to  produce  “Find  $[mexican]_{category}$ deals  in  $[seattle]_{location}$.”  When  there  are  conflicting  spans, we  select  one  of  the  spans  at  random.
+
+> For  example,  we  merge  "Find $mexican_{category}$  deals  in  seattle"  and  “Find  mexican  deals in  $seattle_{location}$”  to  produce  “Find  $mexican_{category}$ deals  in  $seattle_{location}$.”  When  there  are  conflicting  spans, we  select  one  of  the  spans  at  random.
 
 ## Experiments
 ### Dataset
