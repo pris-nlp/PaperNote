@@ -1,5 +1,5 @@
 ## Paper List
-1. [Transfer  Learning  for  Sequence  Labeling  Using  Source  Model  and  Target  Data](https://pris-nlp.github.io/PaperNote/Transfer%20Learning%20for%20Sequence%20Labeling%20Using%20Source%20Model%20and%20Target%20Data)
+1. [Transfer  Learning  for  Sequence  Labeling  Using  Source  Model  and  Target  Data](https://helicqin.github.io/2019/04/12/Transfer%20Learning%20for%20Sequence%20Labeling%20Using%20Source%20Model%20and%20Target%20Data/)
 
 2. [Active Learning for Deep Semantic Parsing](https://pris-nlp.github.io/PaperNote/Active%20Learning%20for%20Deep%20Semantic%20Parsing)
 
