@@ -80,7 +80,7 @@
 
 ### 4. [Improving Domain Adaptation Translation with Domain Invariant and Specific Information](https://drive.google.com/openid=1i9I3eKzBbPLanMtf2fVNXxy25BFqTJBh)
 
-![](https://pic1.zhimg.com/80/v2-1bedbcaf353cc581facc9d4bba3cab08_hd.jpg)
+![](http://imglf4.nosdn0.126.net/img/bG1jbzEvdHVjVjIySTl1ek9GMmVaWk04K01obFBvTUlHZThCZWNGamI2YlVyV2tDWG54QjRnPT0.jpg?imageView&thumbnail=1680x0&quality=96&stripmeta=0&type=jpg)
 
 训练部分采用了不同的方式，需要关注。
 
