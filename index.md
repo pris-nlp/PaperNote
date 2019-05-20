@@ -10,3 +10,5 @@
 5. [NLU迁移学习调研](https://pris-nlp.github.io/PaperNote/NLU%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0%E8%B0%83%E7%A0%94)
 
 6. [Ordered Neurons：Integrating Tree Structures into Recurrent Neural Networks](https://pris-nlp.github.io/PaperNote/Ordered%20Neurons%20Integrating%20Tree%20Structures%20into%20Recurrent%20Neural%20Networks)
+
+7. [Cross-Lingual Transfer Learning for Task Oriented Dialog](https://pris-nlp.github.io/PaperNote/Cross-Lingual%20Transfer%20Learning%20for%20Task%20Oriented%20Dialog)
