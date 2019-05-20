@@ -1,6 +1,6 @@
 ## 《Cross-Lingual Transfer Learning for Task Oriented Dialog》阅读笔记
 
-Conference from: Unknown
+Conference from: NAACL2019
 
 Paper link: [https://arxiv.org/pdf/1810.13327](https://arxiv.org/pdf/1810.13327)
 
