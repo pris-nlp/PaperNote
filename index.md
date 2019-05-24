@@ -12,3 +12,5 @@
 6. [Ordered Neurons：Integrating Tree Structures into Recurrent Neural Networks](https://pris-nlp.github.io/PaperNote/Ordered%20Neurons%20Integrating%20Tree%20Structures%20into%20Recurrent%20Neural%20Networks)
 
 7. [Cross-Lingual Transfer Learning for Task Oriented Dialog](https://pris-nlp.github.io/PaperNote/Cross-Lingual%20Transfer%20Learning%20for%20Task%20Oriented%20Dialog)
+
+8. [Data Augmentation for Spoken Language Understanding via Joint Variational Generation](https://helicqin.github.io/2019/05/23/Data%20Augmentation%20for%20Spoken%20Language%20Understanding%20via%20Joint%20Variational%20Generation/)
