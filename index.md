@@ -18,3 +18,5 @@
 9. [Neural Lexicons for Slot Tagging in Spoken Language Understanding](https://drive.google.com/open?id=15lsw7PitBd-8bD9UzeaQ6qgBa6IvEP4_)
 
 10. [Active  Learning  for  New  Domains  in  Natural  Language  Understanding](https://drive.google.com/open?id=13jZjBZPj-_FnZA3DRujRGuvAF9eeEw4x)
+
+11. [An  Embarrassingly  Simple  Approach  for  Transfer  Learning  from Pretrained  Language  Models](https://drive.google.com/open?id=15p1WbNvhzHiWjI8K0MW1FpjNQnLG2wZy)
