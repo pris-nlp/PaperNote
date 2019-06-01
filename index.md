@@ -14,3 +14,7 @@
 7. [Cross-Lingual Transfer Learning for Task Oriented Dialog](https://pris-nlp.github.io/PaperNote/Cross-Lingual%20Transfer%20Learning%20for%20Task%20Oriented%20Dialog)
 
 8. [Data Augmentation for Spoken Language Understanding via Joint Variational Generation](https://helicqin.github.io/2019/05/23/Data%20Augmentation%20for%20Spoken%20Language%20Understanding%20via%20Joint%20Variational%20Generation/)
+
+9. [Neural Lexicons for Slot Tagging in Spoken Language Understanding](https://drive.google.com/open?id=15lsw7PitBd-8bD9UzeaQ6qgBa6IvEP4_)
+
+10. [Active  Learning  for  New  Domains  in  Natural  Language  Understanding](https://drive.google.com/open?id=13jZjBZPj-_FnZA3DRujRGuvAF9eeEw4x)
