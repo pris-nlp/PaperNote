@@ -52,11 +52,11 @@ $$\mathcal{L}_{adv}=\sum_{i=1}^{k}{t_i \log[\bf{z}_{adv}]^i}\tag{2}$$
 
 因此作者提出了有监督的Attention的方式，来近似获取**哪些地域的知识可以共享**的信息。
 
-具体运算如下：让 $\bf{H}=[\bf{h}_{l_1}, \bf{h}_{l_2}, ..., \bf{h}_{l_k}] \in \Reals^{d_h \times k}$ 表示locale-specific编码器输出向量构成的矩阵，随后，attention权重计算如下：
+具体运算如下：让 $\bf{H}=[\bf{h}_{l_1}, \bf{h}_{l_2}, ..., \bf{h}_{l_k}] \in \reals^{d_h \times k}$ 表示locale-specific编码器输出向量构成的矩阵，随后，attention权重计算如下：
 $$\bf{a}=logistic(\bf{w} \cdot tanh(\bf{V} \cdot \bf{H}))\tag{3}$$
-其中 $\bf{w} \in \Reals^{d_a}$ 和 $\bf{V} \in \Reals^{d_a \times d_h}$ 是可训练参数，$d_a$是一个可以任意设定的超参数。随后，locale-aware的向量根据attention权重对$\bf{h}_{l_1}, ..., \bf{h}_{l_k}$计算线性组合后得到：
+其中 $\bf{w} \in \reals^{d_a}$ 和 $\bf{V} \in \reals^{d_a \times d_h}$ 是可训练参数，$d_a$是一个可以任意设定的超参数。随后，locale-aware的向量根据attention权重对$\bf{h}_{l_1}, ..., \bf{h}_{l_k}$计算线性组合后得到：
 $$x_l=\bf{a} \cdot \bf{H}^T\tag{4}$$
-最终的向量表示为 $\bf{y} \in \Reals^{2 \times d_h}$，是共享层的输出向量$x_s$和$x_l$拼接后的结果。
+最终的向量表示为 $\bf{y} \in \reals^{2 \times d_h}$，是共享层的输出向量$x_s$和$x_l$拼接后的结果。
 
 但注意这里需要让集合$S_{d_{ij}}$内的地域获得较高的Attention权重，因此可以采用有监督的方式对权重$\bf{V}$和$\bf{w}$进行另一个目标的训练。在训练时，可以获知一个输入句子的真实领域（ground truth），因此就可以知道哪些地域包含了这个相同的领域（即$S_{d_{ij}}$），从而可以根据这个对attention权重进行一个奖励或惩罚，定义如下：
 $$\mathcal{L}_{loc}=-(\sum_{l \in S_{d_{ij}}} \log (a_l)+\sum_{l' \notin S_{d_{ij}}} \log (1-a_{l'}))\tag{5}$$
