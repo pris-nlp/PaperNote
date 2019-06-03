@@ -10,7 +10,7 @@ Paper link: [https://arxiv.org/pdf/1905.00924](https://arxiv.org/pdf/1905.00924)
 1. 为每个地域构建单独的分类模型会导致所需的资源和维护成本随地域数量增加也线性增加
 2. 新的地域往往没有很多的训练数据，为每个地域单独构建模型会导致原有的其它地域的数据没有被充分利用
 
-本文就为了解决上述**跨地域（Locale）的SLU领域分类（Domain Classification）问题**。形式化的定义为：假设有$k$个地域：$\{l_i|i=1,2,...,k\}$，每个地域$l_i$有专属与这个地域的domain集合：$D_i=\{d_{ij}|j=1,2,...,|D_i|\}$。这些跨地域domain中可能有公共的部分。这些跨地域公共domain中可能有些有完全相同的intents/slots，有些则根据其地域有不同的intents/slots。本文要解决的问题就是：给定一个来自地域$l_i$的输入句子，模型需要将这句话正确分类到一个domain $d_{ij} \in D_i$中。本文假设了**这些不同的地域都使用同一种语言——英语**。
+本文就为了解决上述**跨地域（Locale）的SLU领域分类（Domain Classification）问题**。形式化的定义为：假设有$k$个地域：$\{l_i\|i=1,2,...,k\}$，每个地域$l_i$有专属与这个地域的domain集合：$D_i=\{d_{ij}\|j=1,2,...,\|D_i\|\}$。这些跨地域domain中可能有公共的部分。这些跨地域公共domain中可能有些有完全相同的intents/slots，有些则根据其地域有不同的intents/slots。本文要解决的问题就是：给定一个来自地域$l_i$的输入句子，模型需要将这句话正确分类到一个domain $d_{ij} \in D_i$中。本文假设了**这些不同的地域都使用同一种语言——英语**。
 
 ### 动机&启发
 
@@ -48,7 +48,7 @@ $$\mathcal{L}_{adv}=\sum_{i=1}^{k}{t_i \log[\bold{z}_{adv}]^i}\tag{2}$$
 
 #### 有监督的跨地域Attention
 
-这一模块的设置是为了让跨地域的领域知识得以共享。考虑所有领域$d_{ij}$，用一个集合$S_{d_{ij}}$来表示该领域所出现的所有地域集合，即$S_{d_{ij}}=\{l_w|d_{ij} \in D_w, \forall w=1,2,...,k\}$。特殊地，当$d_{ij}$为该地域特有时（包括前面的OpenTable的例子），$S_{d_{ij}}=\{l_i\}$。因此理想情况下，为了共享知识，就需要考虑这个集合中所有地域特定的编码器的输出。但是在预测时并不能获知这样的ground truth，来表示和哪些其它地域的知识相关联。
+这一模块的设置是为了让跨地域的领域知识得以共享。考虑所有领域$d_{ij}$，用一个集合$S_{d_{ij}}$来表示该领域所出现的所有地域集合，即$S_{d_{ij}}=\{l_w\|d_{ij} \in D_w, \forall w=1,2,...,k\}$。特殊地，当$d_{ij}$为该地域特有时（包括前面的OpenTable的例子），$S_{d_{ij}}=\{l_i\}$。因此理想情况下，为了共享知识，就需要考虑这个集合中所有地域特定的编码器的输出。但是在预测时并不能获知这样的ground truth，来表示和哪些其它地域的知识相关联。
 
 因此作者提出了有监督的Attention的方式，来近似获取**哪些地域的知识可以共享**的信息。
 
@@ -68,9 +68,9 @@ $$\bold{z}_i = \bold{W}_i^2 \cdot \sigma(\bold{W}_i^1 \cdot \bold{y} + \bold{b}_
 其中$\bold{W}_i$和$\bold{b}_i$是对应到地域$l_i$的可训练参数。$\sigma$是激活函数。
 
 由于本文的模型是多任务联合训练模型，以获取跨地域的表示，因此模型会对所有的$l_i \in S_{d_{ij}}$计算$\bold{z}_i$，然后通过下列公式计算损失：
-$$\mathcal{L}_{pos}=-\log p(d_{ij}|z_i)\tag{7}$$
-$$\mathcal{L}_{neg}=-\sum_{\hat{d_{ij}} \in D_i,\hat{d_{ij}} \neq d_{ij}} \log p(\hat{d_{ij}}|z_i)\tag{8}$$
-$$\mathcal{L}_{pred} = \cfrac{1}{|S_{d_{ij}}|} \sum_{l_i \in S_{d_{ij}}}{(\mathcal{L}_{pos}+\mathcal{L}_{neg}})\tag{9}$$
+$$\mathcal{L}_{pos}=-\log p(d_{ij}\|z_i)\tag{7}$$
+$$\mathcal{L}_{neg}=-\sum_{\hat{d_{ij}} \in D_i,\hat{d_{ij}} \neq d_{ij}} \log p(\hat{d_{ij}}\|z_i)\tag{8}$$
+$$\mathcal{L}_{pred} = \cfrac{1}{\|S_{d_{ij}}\|} \sum_{l_i \in S_{d_{ij}}}{(\mathcal{L}_{pos}+\mathcal{L}_{neg}})\tag{9}$$
 
 最后的目标函数如下：
 $$\underset{\theta_{\mathcal{F}_s}, \theta_{\mathcal{F}_l}, \bold{V}, \bold{w}, \bold{W}, \bold{b}}{\argmin} \mathcal{L}_{adv}+\mathcal{L}_{loc}+\mathcal{L}_{pred}\tag{10}$$
