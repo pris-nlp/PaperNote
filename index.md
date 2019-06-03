@@ -20,3 +20,7 @@
 10. [Active  Learning  for  New  Domains  in  Natural  Language  Understanding](https://drive.google.com/open?id=13jZjBZPj-_FnZA3DRujRGuvAF9eeEw4x)
 
 11. [An  Embarrassingly  Simple  Approach  for  Transfer  Learning  from Pretrained  Language  Models](https://drive.google.com/open?id=15p1WbNvhzHiWjI8K0MW1FpjNQnLG2wZy)
+
+12. [Cross-lingual Transfer Learning for Japanese Named Entity Recognition](https://pris-nlp.github.io/PaperNote/Cross-lingual%20Transfer%20Learning%20for%20Japanese%20Named%20Entity%20Recognition)
+
+13. [Locale-agnostic Universal Domain Classification Model in Spoken Language Understanding](https://pris-nlp.github.io/PaperNote/Locale-agnostic%20Universal%20Domain%20Classification%20Model%20in%20Spoken%20Language%20Understanding)
