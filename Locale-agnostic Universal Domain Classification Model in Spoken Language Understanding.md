@@ -41,9 +41,9 @@ Paper link: [https://arxiv.org/pdf/1905.00924](https://arxiv.org/pdf/1905.00924)
 #### 对抗损失
 
 为了保证共享编码器学习到公共的、领域无关的特征，使用了一个单层神经网络：
-$$\bold{z}_{adv}=softmax(\bold{W}_{adv}\cdot x_s+\bold{b}_{adv})\tag{1}$$
-其中$\bold{W}_{adv}$和$\bold{b}_{adv}$是可训练的参数，$x_s$为共享编码器输出。为了让共享编码器地域不可知，使用了**正**对数似然损失（猜得越准惩罚越大）：
-$$\mathcal{L}_{adv}=\sum_{i=1}^{k}{t_i \log[\bold{z}_{adv}]^i}\tag{2}$$
+$$\bf{z}_{adv}=softmax(\bf{W}_{adv}\cdot x_s+\bf{b}_{adv})\tag{1}$$
+其中$\bf{W}_{adv}$和$\bf{b}_{adv}$是可训练的参数，$x_s$为共享编码器输出。为了让共享编码器地域不可知，使用了**正**对数似然损失（猜得越准惩罚越大）：
+$$\mathcal{L}_{adv}=\sum_{i=1}^{k}{t_i \log[\bf{z}_{adv}]^i}\tag{2}$$
 其中$t_i$是0或1，表示$l_i$是否是一个正确的预测。
 
 #### 有监督的跨地域Attention
@@ -52,28 +52,28 @@ $$\mathcal{L}_{adv}=\sum_{i=1}^{k}{t_i \log[\bold{z}_{adv}]^i}\tag{2}$$
 
 因此作者提出了有监督的Attention的方式，来近似获取**哪些地域的知识可以共享**的信息。
 
-具体运算如下：让 $\bold{H}=[\bold{h}_{l_1}, \bold{h}_{l_2}, ..., \bold{h}_{l_k}] \in \R^{d_h \times k}$ 表示locale-specific编码器输出向量构成的矩阵，随后，attention权重计算如下：
-$$\bold{a}=logistic(\bold{w} \cdot tanh(\bold{V} \cdot \bold{H}))\tag{3}$$
-其中 $\bold{w} \in \R^{d_a}$ 和 $\bold{V} \in \R^{d_a \times d_h}$ 是可训练参数，$d_a$是一个可以任意设定的超参数。随后，locale-aware的向量根据attention权重对$\bold{h}_{l_1}, ..., \bold{h}_{l_k}$计算线性组合后得到：
-$$x_l=\bold{a} \cdot \bold{H}^T\tag{4}$$
-最终的向量表示为 $\bold{y} \in \R^{2 \times d_h}$，是共享层的输出向量$x_s$和$x_l$拼接后的结果。
+具体运算如下：让 $\bf{H}=[\bf{h}_{l_1}, \bf{h}_{l_2}, ..., \bf{h}_{l_k}] \in \Reals^{d_h \times k}$ 表示locale-specific编码器输出向量构成的矩阵，随后，attention权重计算如下：
+$$\bf{a}=logistic(\bf{w} \cdot tanh(\bf{V} \cdot \bf{H}))\tag{3}$$
+其中 $\bf{w} \in \Reals^{d_a}$ 和 $\bf{V} \in \Reals^{d_a \times d_h}$ 是可训练参数，$d_a$是一个可以任意设定的超参数。随后，locale-aware的向量根据attention权重对$\bf{h}_{l_1}, ..., \bf{h}_{l_k}$计算线性组合后得到：
+$$x_l=\bf{a} \cdot \bf{H}^T\tag{4}$$
+最终的向量表示为 $\bf{y} \in \Reals^{2 \times d_h}$，是共享层的输出向量$x_s$和$x_l$拼接后的结果。
 
-但注意这里需要让集合$S_{d_{ij}}$内的地域获得较高的Attention权重，因此可以采用有监督的方式对权重$\bold{V}$和$\bold{w}$进行另一个目标的训练。在训练时，可以获知一个输入句子的真实领域（ground truth），因此就可以知道哪些地域包含了这个相同的领域（即$S_{d_{ij}}$），从而可以根据这个对attention权重进行一个奖励或惩罚，定义如下：
+但注意这里需要让集合$S_{d_{ij}}$内的地域获得较高的Attention权重，因此可以采用有监督的方式对权重$\bf{V}$和$\bf{w}$进行另一个目标的训练。在训练时，可以获知一个输入句子的真实领域（ground truth），因此就可以知道哪些地域包含了这个相同的领域（即$S_{d_{ij}}$），从而可以根据这个对attention权重进行一个奖励或惩罚，定义如下：
 $$\mathcal{L}_{loc}=-(\sum_{l \in S_{d_{ij}}} \log (a_l)+\sum_{l' \notin S_{d_{ij}}} \log (1-a_{l'}))\tag{5}$$
 
 #### 领域分类
 
 模型为每一个地域$l_i$设置了一个专属的分类层：
-$$\bold{z}_i = \bold{W}_i^2 \cdot \sigma(\bold{W}_i^1 \cdot \bold{y} + \bold{b}_i^1) + \bold{b}_i^2\tag{6}$$
-其中$\bold{W}_i$和$\bold{b}_i$是对应到地域$l_i$的可训练参数。$\sigma$是激活函数。
+$$\bf{z}_i = \bf{W}_i^2 \cdot \sigma(\bf{W}_i^1 \cdot \bf{y} + \bf{b}_i^1) + \bf{b}_i^2\tag{6}$$
+其中$\bf{W}_i$和$\bf{b}_i$是对应到地域$l_i$的可训练参数。$\sigma$是激活函数。
 
-由于本文的模型是多任务联合训练模型，以获取跨地域的表示，因此模型会对所有的$l_i \in S_{d_{ij}}$计算$\bold{z}_i$，然后通过下列公式计算损失：
+由于本文的模型是多任务联合训练模型，以获取跨地域的表示，因此模型会对所有的$l_i \in S_{d_{ij}}$计算$\bf{z}_i$，然后通过下列公式计算损失：
 $$\mathcal{L}_{pos}=-\log p(d_{ij}\|z_i)\tag{7}$$
 $$\mathcal{L}_{neg}=-\sum_{\hat{d_{ij}} \in D_i,\hat{d_{ij}} \neq d_{ij}} \log p(\hat{d_{ij}}\|z_i)\tag{8}$$
 $$\mathcal{L}_{pred} = \cfrac{1}{\|S_{d_{ij}}\|} \sum_{l_i \in S_{d_{ij}}}{(\mathcal{L}_{pos}+\mathcal{L}_{neg}})\tag{9}$$
 
 最后的目标函数如下：
-$$\underset{\theta_{\mathcal{F}_s}, \theta_{\mathcal{F}_l}, \bold{V}, \bold{w}, \bold{W}, \bold{b}}{\argmin} \mathcal{L}_{adv}+\mathcal{L}_{loc}+\mathcal{L}_{pred}\tag{10}$$
+$$\underset{\theta_{\mathcal{F}_s}, \theta_{\mathcal{F}_l}, \bf{V}, \bf{w}, \bf{W}, \bf{b}}{\arg \min} \mathcal{L}_{adv}+\mathcal{L}_{loc}+\mathcal{L}_{pred}\tag{10}$$
 其中$\theta_{\mathcal{F}_s}$和$\theta_{\mathcal{F}_l}$分别是共享和地域专属编码器的参数。
 
 ### 实验
