@@ -26,3 +26,7 @@
 13. [Locale-agnostic Universal Domain Classification Model in Spoken Language Understanding](https://pris-nlp.github.io/PaperNote/Locale-agnostic%20Universal%20Domain%20Classification%20Model%20in%20Spoken%20Language%20Understanding)
 
 14. [Decay-Function-Free Time-Aware Attention to Context and Speaker Indicator for Spoken Language Understanding](https://helicqin.github.io/2019/06/08/Decay-Function-Free%20Time-Aware%20Attention%20to%20Context%20and%20Speaker%20Indicator%20for%20Spoken%20Language%20Understanding/)
+
+15. [Cross-lingual Multi-Level Adversarial Transfer to Enhance Low-Resource Name Tagging](https://drive.google.com/open?id=1sjULw9xHdrRIsFay6BWkjkPKYK_qpysF)
+
+16. [A  Multi-lingual  Multi-task  Architecture  for  Low-resource  Sequence Labeling](https://drive.google.com/open?id=1xIRYasdeR6KdWqJn9sVJxynLWC6dQXLl)
